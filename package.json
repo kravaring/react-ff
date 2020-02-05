@@ -1,0 +1,38 @@
+{
+  "name": "react-ff",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "create": "npm run build && npm run test",
+    "build": "npm run lint && tsc -p .",
+    "check": "sudo npm i -g && react-ff",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./src/**/*.ts",
+    "fix": "prettier --write ./src/**/*.ts"
+  },
+  "main": "./lib/index.js",
+  "bin": {
+    "react-ff": "./lib/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "commander": "^4.1.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@types/node": "^13.5.0",
+    "@typescript-eslint/eslint-plugin": "^2.19.0",
+    "@typescript-eslint/parser": "^2.19.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  }
+}
