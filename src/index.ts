@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import chalk from 'chalk';
-import path from 'path';
 import commander from 'commander';
+import { getFullPath } from './fileInteractions';
 
 const program = new commander.Command();
 
@@ -12,12 +12,7 @@ program
     .description('A CLI tool for creating feature folders in React')
     .command('create <Component> [destination]')
     .action((component, destination, options) => {
-        let fullPath = '';
-        if (destination) {
-            fullPath = path.join(__dirname, destination, component);
-        } else {
-            fullPath = path.join(__dirname, component);
-        }
+        const fullPath = getFullPath(component, __dirname, destination)
         console.log(fullPath);
         console.log(options.javascript);
         console.log(options.test);
