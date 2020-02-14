@@ -1,8 +1,11 @@
 import path from 'path';
 
 export const getFullPath = (component: string, dirname: string, destination?: string): string => {
-    if (destination) {
+    if (!destination) {
+        return path.join(dirname, component);
+    }
+    if (destination.startsWith('.')) {
         return path.join(dirname, destination, component);
     }
-    return path.join(dirname, component);
+    return path.join(destination, component);
 };
