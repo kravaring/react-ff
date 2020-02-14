@@ -60,5 +60,15 @@ describe('fileInteractions', () => {
             const expected = [`${fullPath}/index.ts`, `${fullPath}/${component}.tsx`, `${fullPath}/style.less`, `${fullPath}/${component}.test.tsx`];
             expect(files).toEqual(expected);
         });
+
+        it('should return index ts file, component tsx file, stylew file and test file', () => {
+            const files = getFileNames(fullPath, component, {
+                useJS: true,
+                style: 'scss',
+                test: 'spec',
+            });
+            const expected = [`${fullPath}/index.js`, `${fullPath}/${component}.jsx`, `${fullPath}/style.scss`, `${fullPath}/${component}.spec.jsx`];
+            expect(files).toEqual(expected);
+        });
     });
 });

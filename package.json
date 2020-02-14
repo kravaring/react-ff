@@ -9,7 +9,7 @@
     "check": "sudo npm i -g && react-ff",
     "test": "jest --collectCoverage",
     "lint": "eslint ./src/**/*.ts",
-    "fix": "prettier --write ./src/**/*.ts"
+    "fix": "prettier --write ./src/*.ts ./src/**/*.ts"
   },
   "main": "./lib/index.js",
   "bin": {

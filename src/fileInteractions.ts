@@ -25,4 +25,4 @@ export const getFileNames = (fullPath: string, component: string, options: Files
         result.push(testFile);
     }
     return result;
-}
+};
