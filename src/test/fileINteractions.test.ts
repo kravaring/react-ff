@@ -1,4 +1,5 @@
 import { getFullPath, getFileNames } from '../fileInteractions';
+import { FileInstance } from '../models';
 
 describe('fileInteractions', () => {
     describe('getFullPath', () => {
@@ -27,47 +28,116 @@ describe('fileInteractions', () => {
         const component = 'User';
         it('should return index ts file and component tsx file by default', () => {
             const files = getFileNames(fullPath, component, {
-                useJS: false,
+                lang: 'ts',
             });
-            const expected = [`${fullPath}/index.ts`, `${fullPath}/${component}.tsx`];
+            const expected: Array<FileInstance> = [
+                {
+                    type: 'index',
+                    path: `${fullPath}/index.ts`,
+                },
+                {
+                    type: 'component',
+                    path: `${fullPath}/${component}.tsx`,
+                },
+            ];
             expect(files).toEqual(expected);
         });
 
         it('should return index ts file, component tsx file and style file', () => {
             const files = getFileNames(fullPath, component, {
-                useJS: false,
+                lang: 'ts',
                 style: 'css',
             });
-            const expected = [`${fullPath}/index.ts`, `${fullPath}/${component}.tsx`, `${fullPath}/style.css`];
+            const expected: Array<FileInstance> = [
+                {
+                    type: 'index',
+                    path: `${fullPath}/index.ts`,
+                },
+                {
+                    type: 'component',
+                    path: `${fullPath}/${component}.tsx`,
+                },
+                {
+                    type: 'style',
+                    path: `${fullPath}/style.css`,
+                },
+            ];
             expect(files).toEqual(expected);
         });
 
         it('should return index ts file, component tsx file and test file', () => {
             const files = getFileNames(fullPath, component, {
-                useJS: false,
+                lang: 'ts',
                 test: 'test',
             });
-            const expected = [`${fullPath}/index.ts`, `${fullPath}/${component}.tsx`, `${fullPath}/${component}.test.tsx`];
+            const expected: Array<FileInstance> = [
+                {
+                    type: 'index',
+                    path: `${fullPath}/index.ts`,
+                },
+                {
+                    type: 'component',
+                    path: `${fullPath}/${component}.tsx`,
+                },
+                {
+                    type: 'test',
+                    path: `${fullPath}/${component}.test.tsx`,
+                },
+            ];
             expect(files).toEqual(expected);
         });
 
         it('should return index ts file, component tsx file, stylew file and test file', () => {
             const files = getFileNames(fullPath, component, {
-                useJS: false,
+                lang: 'ts',
                 style: 'less',
                 test: 'test',
             });
-            const expected = [`${fullPath}/index.ts`, `${fullPath}/${component}.tsx`, `${fullPath}/style.less`, `${fullPath}/${component}.test.tsx`];
+            const expected: Array<FileInstance> = [
+                {
+                    type: 'index',
+                    path: `${fullPath}/index.ts`,
+                },
+                {
+                    type: 'component',
+                    path: `${fullPath}/${component}.tsx`,
+                },
+                {
+                    type: 'style',
+                    path: `${fullPath}/style.less`,
+                },
+                {
+                    type: 'test',
+                    path: `${fullPath}/${component}.test.tsx`,
+                },
+            ];
             expect(files).toEqual(expected);
         });
 
         it('should return index ts file, component tsx file, stylew file and test file', () => {
             const files = getFileNames(fullPath, component, {
-                useJS: true,
+                lang: 'js',
                 style: 'scss',
                 test: 'spec',
             });
-            const expected = [`${fullPath}/index.js`, `${fullPath}/${component}.jsx`, `${fullPath}/style.scss`, `${fullPath}/${component}.spec.jsx`];
+            const expected: Array<FileInstance> = [
+                {
+                    type: 'index',
+                    path: `${fullPath}/index.js`,
+                },
+                {
+                    type: 'component',
+                    path: `${fullPath}/${component}.jsx`,
+                },
+                {
+                    type: 'style',
+                    path: `${fullPath}/style.scss`,
+                },
+                {
+                    type: 'test',
+                    path: `${fullPath}/${component}.spec.jsx`,
+                },
+            ];
             expect(files).toEqual(expected);
         });
     });
