@@ -1,5 +1,5 @@
 import path from 'path';
-import { FilesOptions, FileInstance } from './models';
+import { FilesOptions, FileInstance } from '../models';
 
 export const getFullPath = (component: string, dirname: string, destination?: string): string => {
     if (!destination) {

@@ -1,4 +1,4 @@
-import { getFullPath, getFileNames } from '../fileInteractions';
+import { getFullPath, getFileNames } from './fileInteractions';
 import { FileInstance } from '../models';
 
 describe('fileInteractions', () => {

@@ -1,0 +1,1 @@
+export { getGenerator } from './controller';

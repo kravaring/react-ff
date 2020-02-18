@@ -1,0 +1,8 @@
+import { FileTypes, FileInstance } from './instance';
+import { Modes } from './options';
+
+export type ComponentContentFunc = (componentName: string, mode: Modes) => string;
+export type ContentFunc = (componentName: string) => string;
+export type StyleContentFunc = () => null;
+export type ActionFunc = (instance: FileInstance) => void;
+export type ContentGenerator = Record<FileTypes, ContentFunc | ComponentContentFunc | StyleContentFunc>;
