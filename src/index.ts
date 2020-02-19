@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 import chalk from 'chalk';
 import commander, { Command } from 'commander';
-import { getFullPath } from './fileInteractions';
+import { getFullPath } from './fileInteraction';
 
 const program = new commander.Command();
 
 program
     .option('-J, --javascript', 'use javascript')
+    .option('-C, --class', 'generate components as class components (function components are default)')
     .option('-t, --test [name]', 'add test file', 'test')
     .option('-s, --style [option]', 'add style file', 'css')
     .version('0.0.1')
