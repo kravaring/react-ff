@@ -2,7 +2,40 @@ import { ContentGenerator, Modes } from '../models';
 
 export const generateIndex = (componentName: string): string => `export { ${componentName} } from './${componentName}';\n`;
 
-export const generateComponentTs = (componentName: string, mode: Modes): string => '';
+export const getClass = (componentName: string): string => `import React, { Component } from 'react';
+
+interface ${componentName}State {
+};
+
+interface ${componentName}Props {
+};
+
+export class ${componentName} extends Component<${componentName}Props, ${componentName}State> {
+    state = {
+    };
+
+    render(){
+        return (
+            <div></div>
+        );
+    }
+};
+`;
+
+export const getFunc = (componentName: string): string => `import React, { FunctionComponent } from 'react';
+
+interface ${componentName}Props {
+};
+
+export const ${componentName}: FunctionComponent<${componentName}Props> = ({}) => {
+    return (
+        <div></div>
+    );
+};
+`;
+
+export const generateComponentTs = (componentName: string, mode: Modes): string =>
+    mode === 'class' ? getClass(componentName) : getFunc(componentName);
 
 export const generateTestTs = (componentName: string): string =>
     `import { ${componentName} } from './${componentName}';\n\ndescribe('${componentName}', () => {\n\n});\n`;
