@@ -27,7 +27,7 @@ export class Search extends Component<SearchProps, SearchState> {
     state = {
     };
 
-    render(){
+    render(): JSX.Element {
         return (
             <div></div>
         );
@@ -44,7 +44,7 @@ export class Search extends Component<SearchProps, SearchState> {
 interface SearchProps {
 };
 
-export const Search: FunctionComponent<SearchProps> = ({}) => {
+export const Search: FunctionComponent<SearchProps> = ({}): JSX.Element => {
     return (
         <div></div>
     );

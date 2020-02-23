@@ -14,7 +14,7 @@ export class ${componentName} extends Component<${componentName}Props, ${compone
     state = {
     };
 
-    render(){
+    render(): JSX.Element {
         return (
             <div></div>
         );
@@ -27,7 +27,7 @@ export const getFunc = (componentName: string): string => `import React, { Funct
 interface ${componentName}Props {
 };
 
-export const ${componentName}: FunctionComponent<${componentName}Props> = ({}) => {
+export const ${componentName}: FunctionComponent<${componentName}Props> = ({}): JSX.Element => {
     return (
         <div></div>
     );
