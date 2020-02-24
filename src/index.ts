@@ -1,23 +1,37 @@
 #!/usr/bin/env node
-import chalk from 'chalk';
-import fs, { promises as fsAsync } from 'fs';
+import { promises as fsAsync } from 'fs';
 import commander, { Command } from 'commander';
 import { getFullPath, getFileNames } from './fileInteraction';
 import { getGenerator } from './contentGenerating';
 import { FilesOptions, Modes } from './models';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const appPackage = require('../package.json');
 
 const program = new commander.Command();
+
+async function doesFolderExists(folderPath: string): Promise<boolean> {
+    const result = await fsAsync.stat(folderPath).catch(err => {
+        if (err.code === 'ENOENT') {
+            return false;
+        }
+        throw err;
+    });
+    if (typeof result === 'boolean') {
+        return result;
+    }
+    return result.isDirectory();
+}
 
 program
     .option('-J, --javascript', 'use javascript (typescript is default)')
     .option('-C, --class', 'generate components as class components (function components are default)')
     .option('-t, --test [name]', 'add test file', 'test')
     .option('-s, --style [option]', 'add style file', 'css')
-    .version('0.0.1')
+    .version(appPackage.version)
     .description('A CLI tool for creating feature folders in React')
     .command('create <Component> [destination]')
-    .action((component: string, destination: string, commandDetails: Command) => {
-        const fullPath = getFullPath(component, __dirname, destination);
+    .action(async (component: string, destination: string, commandDetails: Command) => {
+        const fullPath = getFullPath(component, process.cwd(), destination);
         const options = new FilesOptions(commandDetails.parent.javascript, commandDetails.parent.test, commandDetails.parent.style);
         const files = getFileNames(fullPath, component, options);
         const mode: Modes = commandDetails.parent.class ? 'class' : 'function';
@@ -26,8 +40,9 @@ program
             mode,
             componentName: component,
         });
-        if (!fs.existsSync(fullPath)) {
-            fs.mkdirSync(fullPath);
+        const exists = await doesFolderExists(fullPath);
+        if (!exists) {
+            await fsAsync.mkdir(fullPath, { recursive: true });
         }
         files.forEach(async fi => {
             try {
