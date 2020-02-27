@@ -3,6 +3,7 @@ import { promises as fsAsync } from 'fs';
 import commander, { Command } from 'commander';
 import { getFullPath, getFileNames } from './fileInteraction';
 import { getGenerator } from './contentGenerating';
+import { includeTest, includeStyle, T, TEST, S, STYLE} from './options';
 import { FilesOptions, Modes } from './models';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const appPackage = require('../package.json');
@@ -25,15 +26,19 @@ async function doesFolderExists(folderPath: string): Promise<boolean> {
 program
     .option('-J, --javascript', 'use javascript (typescript is default)')
     .option('-C, --class', 'generate components as class components (function components are default)')
-    .option('-t, --test [name]', 'add test file', 'test')
-    .option('-s, --style [option]', 'add style file', 'css')
+    .option(`${T}, ${TEST} [name]`, 'add test file', 'test')
+    .option(`${S}, ${STYLE} [option]`, 'add style file', 'css')
     .version(appPackage.version)
     .description('A CLI tool for creating feature folders in React')
     .command('create <Component> [destination]')
     .action(async (component: string, destination: string, commandDetails: Command) => {
+        console.log(commandDetails);
         const fullPath = getFullPath(component, process.cwd(), destination);
-        const options = new FilesOptions(commandDetails.parent.javascript, commandDetails.parent.test, commandDetails.parent.style);
+        const { rawArgs, test, style } = commandDetails.parent;
+        const options = new FilesOptions(commandDetails.parent.javascript, includeTest(rawArgs) && test, includeStyle(rawArgs) && style);
+        console.log(options);
         const files = getFileNames(fullPath, component, options);
+        console.log(files);
         const mode: Modes = commandDetails.parent.class ? 'class' : 'function';
         const generator = getGenerator({
             lang: options.lang,

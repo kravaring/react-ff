@@ -1,6 +1,6 @@
 {
   "name": "react-ff",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "scripts": {
     "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
@@ -19,7 +19,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^3.0.0",
     "commander": "^4.1.0",
     "path": "^0.12.7"
   },
