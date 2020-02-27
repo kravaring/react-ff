@@ -3,7 +3,7 @@ import { promises as fsAsync } from 'fs';
 import commander, { Command } from 'commander';
 import { getFullPath, getFileNames } from './fileInteraction';
 import { getGenerator } from './contentGenerating';
-import { includeTest, includeStyle, T, TEST, S, STYLE} from './options';
+import { includeTest, includeStyle, T, TEST, S, STYLE } from './options';
 import { FilesOptions, Modes } from './models';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const appPackage = require('../package.json');
@@ -32,13 +32,10 @@ program
     .description('A CLI tool for creating feature folders in React')
     .command('create <Component> [destination]')
     .action(async (component: string, destination: string, commandDetails: Command) => {
-        console.log(commandDetails);
         const fullPath = getFullPath(component, process.cwd(), destination);
         const { rawArgs, test, style } = commandDetails.parent;
         const options = new FilesOptions(commandDetails.parent.javascript, includeTest(rawArgs) && test, includeStyle(rawArgs) && style);
-        console.log(options);
         const files = getFileNames(fullPath, component, options);
-        console.log(files);
         const mode: Modes = commandDetails.parent.class ? 'class' : 'function';
         const generator = getGenerator({
             lang: options.lang,
