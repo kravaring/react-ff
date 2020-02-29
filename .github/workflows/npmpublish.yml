@@ -39,7 +39,6 @@ jobs:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
           scope: '@ragingyngvarr'
-      - run: npm run build
       - run: npm run publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.gh_token}}
