@@ -1,4 +1,4 @@
-name: React-ff
+name: React-ff publish
 
 on:
   release:
