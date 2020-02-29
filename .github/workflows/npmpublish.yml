@@ -13,8 +13,8 @@ jobs:
         with:
           node-version: 12
       - run: npm install
-      - run: npm test
-      - run: npm build
+      - run: npm run test
+      - run: npm run build
 
   publish-npm:
     needs: build
@@ -39,7 +39,7 @@ jobs:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
           scope: '@ragingyngvarr'
-      - run: npm build
-      - run: npm publish
+      - run: npm run build
+      - run: npm run publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
