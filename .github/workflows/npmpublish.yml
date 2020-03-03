@@ -13,6 +13,7 @@ jobs:
         with:
           node-version: 12
       - run: npm install
+      - run: npm run lint
       - run: npm run test
       - run: npm run build
 
@@ -39,6 +40,6 @@ jobs:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
           scope: '@ragingyngvarr'
-      - run: npm run publish
+      - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.gh_token}}

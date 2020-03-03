@@ -1,6 +1,6 @@
 {
   "name": "react-ff",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "CLI tool for creating feature folders in React",
   "repository": {
     "type": "git",
@@ -8,8 +8,8 @@
   },
   "scripts": {
     "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
-    "create": "npm run build && npm run test",
-    "build": "npm run lint && tsc -p .",
+    "create": "npm run lint && npm run test && npm run build",
+    "build": "tsc -p .",
     "check": "sudo npm i -g && react-ff",
     "test": "jest --collectCoverage",
     "lint": "eslint ./src/**/*.ts",
