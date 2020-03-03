@@ -1,7 +1,11 @@
 {
   "name": "react-ff",
   "version": "1.0.2",
-  "description": "",
+  "description": "CLI tool for creating feature folders in React",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ragingyngvarr/react-ff.git"
+  },
   "scripts": {
     "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "create": "npm run build && npm run test",
@@ -15,8 +19,12 @@
   "bin": {
     "react-ff": "./lib/index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "react",
+    "feature-folders"
+  ],
+  "author": "Ihar Krasiuk <yngvarr.bel@gmail.com>",
+  "types": "./lib/index.d.ts",
   "license": "ISC",
   "dependencies": {
     "commander": "^4.1.0",
