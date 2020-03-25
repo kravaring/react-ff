@@ -1,31 +1,36 @@
 import { ContentGenerator, Modes } from '../models';
 import { generateIndex, getNull, generateTestTs } from './tsGenerators';
 
-export const getClass = (componentName: string): string => `import React, { Component } from 'react';
+// eslint-disable-next-line prettier/prettier
+export const getImports = (mode: Modes, styleFile?: string): string => `import React${mode === 'class' ? ', { Component }' : ''} from 'react';
+${!!styleFile ? "import '" + styleFile + "';\n" : ''}`;
 
+export const getClass = (componentName: string, styleFile?: string): string => `${getImports('class', styleFile)}
 export class ${componentName} extends Component {
     state = {
+        message: 'Hello',
     };
 
     render() {
+        const { showMessage } = this.props;
+        const { message } = this.state;
         return (
-            <div></div>
+            <div>{showMessage && message}</div>
         );
     }
 };
 `;
 
-export const getFunc = (componentName: string): string => `import React from 'react';
-
-export const ${componentName} = ({}) => {
+export const getFunc = (componentName: string, styleFile?: string): string => `${getImports('function', styleFile)}
+export const ${componentName} = ({message = 'Hello'}) => {
     return (
-        <div></div>
+        <div>{message}</div>
     );
 };
 `;
 
-export const generateComponentJs = (componentName: string, mode: Modes): string =>
-    mode === 'class' ? getClass(componentName) : getFunc(componentName);
+export const generateComponentJs = (componentName: string, mode: Modes, styleFile?: string): string =>
+    mode === 'class' ? getClass(componentName, styleFile) : getFunc(componentName, styleFile);
 
 export const generateTestJs = generateTestTs;
 

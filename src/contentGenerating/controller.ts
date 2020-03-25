@@ -6,9 +6,10 @@ interface GeneratorOptions {
     lang: Lang;
     mode: Modes;
     componentName: string;
+    styleFile?: string;
 }
 
-export const getGenerator = ({ lang, mode, componentName }: GeneratorOptions): GeneratorCallerFunc =>
-    lang === 'js'
-        ? (type: FileTypes): string | null => jsGenerator[type](componentName, mode)
-        : (type: FileTypes): string | null => tsGenerator[type](componentName, mode);
+export const getGenerator = ({ lang, mode, componentName, styleFile }: GeneratorOptions): GeneratorCallerFunc => {
+    const generator = lang === 'js' ? jsGenerator : tsGenerator;
+    return (type: FileTypes): string | null => generator[type](componentName, mode, styleFile);
+};

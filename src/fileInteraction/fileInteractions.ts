@@ -1,5 +1,6 @@
 import path from 'path';
 import { FilesOptions, FileInstance } from '../models';
+import { STYLE } from '../options';
 
 export const getFullPath = (component: string, dirname: string, destination?: string): string => {
     if (!destination) {
@@ -26,7 +27,7 @@ export const getFileNames = (fullPath: string, component: string, options: Files
         },
     ];
     if (options.style) {
-        const styleFile = path.join(fullPath, `style.${options.style}`);
+        const styleFile = path.join(fullPath, `${STYLE}.${options.style}`);
         result.push({
             type: 'style',
             path: styleFile,

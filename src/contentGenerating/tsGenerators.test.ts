@@ -18,18 +18,23 @@ describe('TS generator', () => {
         const expected = `import React, { Component } from 'react';
 
 interface SearchState {
+    message: string;
 };
 
 interface SearchProps {
+    showMessage: boolean;
 };
 
 export class Search extends Component<SearchProps, SearchState> {
     state = {
+        message: 'Hello',
     };
 
     render(): JSX.Element {
+        const { showMessage } = this.props;
+        const { message } = this.state;
         return (
-            <div></div>
+            <div>{showMessage && message}</div>
         );
     }
 };
@@ -42,11 +47,30 @@ export class Search extends Component<SearchProps, SearchState> {
         const expected = `import React, { FunctionComponent } from 'react';
 
 interface SearchProps {
+    message?: string;
 };
 
-export const Search: FunctionComponent<SearchProps> = ({}): JSX.Element => {
+export const Search: FunctionComponent<SearchProps> = ({message = 'Hello'}): JSX.Element => {
     return (
-        <div></div>
+        <div>{message}</div>
+    );
+};
+`;
+        expect(content).toBe(expected);
+    });
+
+    it('should generate function component with style', () => {
+        const content = generateComponentTs('Search', 'function', 'style.css');
+        const expected = `import React, { FunctionComponent } from 'react';
+import 'style.css';
+
+interface SearchProps {
+    message?: string;
+};
+
+export const Search: FunctionComponent<SearchProps> = ({message = 'Hello'}): JSX.Element => {
+    return (
+        <div>{message}</div>
     );
 };
 `;
