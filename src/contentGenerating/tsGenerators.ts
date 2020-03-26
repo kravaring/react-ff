@@ -4,7 +4,7 @@ export const generateIndex = (componentName: string): string => `export { ${comp
 
 // eslint-disable-next-line prettier/prettier
 export const getImports = (mode: Modes, styleFile?: string): string => `import React, { ${mode === 'class' ? 'Component' : 'FunctionComponent'} } from 'react';
-${!!styleFile ? "import '" + styleFile + "';\n" : ''}`;
+${!!styleFile ? "import './" + styleFile + "';\n" : ''}`;
 
 export const getClass = (componentName: string, styleFile?: string): string => `${getImports('class', styleFile)}
 interface ${componentName}State {
@@ -35,7 +35,7 @@ interface ${componentName}Props {
     message?: string;
 };
 
-export const ${componentName}: FunctionComponent<${componentName}Props> = ({message = 'Hello'}): JSX.Element => {
+export const ${componentName}: FunctionComponent<${componentName}Props> = ({ message = 'Hello' }): JSX.Element => {
     return (
         <div>{message}</div>
     );

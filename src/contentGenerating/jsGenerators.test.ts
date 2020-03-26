@@ -37,7 +37,7 @@ export class Search extends Component {
         const content = generateComponentJs('Search', 'function');
         const expected = `import React from 'react';
 
-export const Search = ({message = 'Hello'}) => {
+export const Search = ({ message = 'Hello' }) => {
     return (
         <div>{message}</div>
     );
@@ -49,9 +49,9 @@ export const Search = ({message = 'Hello'}) => {
     it('should generate function component with style', () => {
         const content = generateComponentJs('Search', 'function', 'style.less');
         const expected = `import React from 'react';
-import 'style.less';
+import './style.less';
 
-export const Search = ({message = 'Hello'}) => {
+export const Search = ({ message = 'Hello' }) => {
     return (
         <div>{message}</div>
     );

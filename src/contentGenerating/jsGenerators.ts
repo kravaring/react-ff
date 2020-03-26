@@ -3,7 +3,7 @@ import { generateIndex, getNull, generateTestTs } from './tsGenerators';
 
 // eslint-disable-next-line prettier/prettier
 export const getImports = (mode: Modes, styleFile?: string): string => `import React${mode === 'class' ? ', { Component }' : ''} from 'react';
-${!!styleFile ? "import '" + styleFile + "';\n" : ''}`;
+${!!styleFile ? "import './" + styleFile + "';\n" : ''}`;
 
 export const getClass = (componentName: string, styleFile?: string): string => `${getImports('class', styleFile)}
 export class ${componentName} extends Component {
@@ -22,7 +22,7 @@ export class ${componentName} extends Component {
 `;
 
 export const getFunc = (componentName: string, styleFile?: string): string => `${getImports('function', styleFile)}
-export const ${componentName} = ({message = 'Hello'}) => {
+export const ${componentName} = ({ message = 'Hello' }) => {
     return (
         <div>{message}</div>
     );
