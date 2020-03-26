@@ -50,7 +50,7 @@ interface SearchProps {
     message?: string;
 };
 
-export const Search: FunctionComponent<SearchProps> = ({message = 'Hello'}): JSX.Element => {
+export const Search: FunctionComponent<SearchProps> = ({ message = 'Hello' }): JSX.Element => {
     return (
         <div>{message}</div>
     );
@@ -62,13 +62,13 @@ export const Search: FunctionComponent<SearchProps> = ({message = 'Hello'}): JSX
     it('should generate function component with style', () => {
         const content = generateComponentTs('Search', 'function', 'style.css');
         const expected = `import React, { FunctionComponent } from 'react';
-import 'style.css';
+import './style.css';
 
 interface SearchProps {
     message?: string;
 };
 
-export const Search: FunctionComponent<SearchProps> = ({message = 'Hello'}): JSX.Element => {
+export const Search: FunctionComponent<SearchProps> = ({ message = 'Hello' }): JSX.Element => {
     return (
         <div>{message}</div>
     );

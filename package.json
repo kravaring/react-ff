@@ -1,6 +1,6 @@
 {
   "name": "react-ff",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "CLI tool for creating feature folders in React",
   "repository": {
     "type": "git",
@@ -23,6 +23,9 @@
     "react",
     "feature-folders"
   ],
+  "jest": {
+    "coverageDirectory": "./coverage/"
+  },
   "author": "Ihar Krasiuk <yngvarr.bel@gmail.com>",
   "types": "./lib/index.d.ts",
   "license": "ISC",
