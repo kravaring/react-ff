@@ -39,7 +39,7 @@ export const ${componentName}: FunctionComponent<${componentName}Props> = ({ mes
     return (
         <div>{message}</div>
     );
-};
+}
 `;
 
 export const generateComponentTs = (componentName: string, mode: Modes, styleFile?: string): string =>

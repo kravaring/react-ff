@@ -54,7 +54,7 @@ export const Search: FunctionComponent<SearchProps> = ({ message = 'Hello' }): J
     return (
         <div>{message}</div>
     );
-};
+}
 `;
         expect(content).toBe(expected);
     });
@@ -72,7 +72,7 @@ export const Search: FunctionComponent<SearchProps> = ({ message = 'Hello' }): J
     return (
         <div>{message}</div>
     );
-};
+}
 `;
         expect(content).toBe(expected);
     });
