@@ -1,6 +1,6 @@
 {
   "name": "react-ff",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "CLI tool for creating feature folders in React",
   "repository": {
     "type": "git",
