@@ -19,11 +19,11 @@ describe('TS generator', () => {
 
 interface SearchState {
     message: string;
-};
+}
 
 interface SearchProps {
     showMessage: boolean;
-};
+}
 
 export class Search extends Component<SearchProps, SearchState> {
     state = {
@@ -48,13 +48,13 @@ export class Search extends Component<SearchProps, SearchState> {
 
 interface SearchProps {
     message?: string;
-};
+}
 
 export const Search: FunctionComponent<SearchProps> = ({ message = 'Hello' }): JSX.Element => {
     return (
         <div>{message}</div>
     );
-}
+};
 `;
         expect(content).toBe(expected);
     });
@@ -66,13 +66,13 @@ import './style.css';
 
 interface SearchProps {
     message?: string;
-};
+}
 
 export const Search: FunctionComponent<SearchProps> = ({ message = 'Hello' }): JSX.Element => {
     return (
         <div>{message}</div>
     );
-}
+};
 `;
         expect(content).toBe(expected);
     });

@@ -9,11 +9,11 @@ ${!!styleFile ? "import './" + styleFile + "';\n" : ''}`;
 export const getClass = (componentName: string, styleFile?: string): string => `${getImports('class', styleFile)}
 interface ${componentName}State {
     message: string;
-};
+}
 
 interface ${componentName}Props {
     showMessage: boolean;
-};
+}
 
 export class ${componentName} extends Component<${componentName}Props, ${componentName}State> {
     state = {
@@ -33,13 +33,13 @@ export class ${componentName} extends Component<${componentName}Props, ${compone
 export const getFunc = (componentName: string, styleFile?: string): string => `${getImports('function', styleFile)}
 interface ${componentName}Props {
     message?: string;
-};
+}
 
 export const ${componentName}: FunctionComponent<${componentName}Props> = ({ message = 'Hello' }): JSX.Element => {
     return (
         <div>{message}</div>
     );
-}
+};
 `;
 
 export const generateComponentTs = (componentName: string, mode: Modes, styleFile?: string): string =>
